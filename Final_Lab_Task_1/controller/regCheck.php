@@ -9,18 +9,24 @@
         $password = trim($_REQUEST['password']);
         $email = trim($_REQUEST['email']);
 
+        
         if($id == null || $username == null || empty($password || empty($email))){
-            echo "Null id/username/password/email!";
+            echo "Id/username/password/email  field cant be empty!";
 
-        }else {
-            $status = addUser($username, $password, $email);
+        }
+        else{
+            if(!isset($_SESSION['users'])){
+                $_SESSION['users'] = [];
+            }
+            $status = addUser($id, $username, $password, $email);
             if($status){
                 header('location: ../view/login.html');
             }else{
                 header('location: ../view/reg.html');
             }
         }
-    }else{
+    }
+    else{
         header('location: ../view/reg.html');
     }
 
