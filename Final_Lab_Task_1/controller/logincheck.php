@@ -4,10 +4,11 @@
 
     if(isset($_REQUEST['submit'])){
 
+        $id = trim($_POST['id']);
         $username = trim($_POST['username']);
         $password = trim($_REQUEST['password']);
 
-        if($username == null || empty($password)){
+        if($id == null || $username == null || empty($password)){
             echo "Null username/password!";
         }else {
             $status = login($username, $password);
